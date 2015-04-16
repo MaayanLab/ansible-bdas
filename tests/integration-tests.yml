@@ -18,7 +18,7 @@
 
       - name: run Spark test
         when: install_spark
-        shell: "{{ spark_root }}/bin/spark-shell --master spark://{{ spark_master_host }}:{{ spark_master_port }} -i:/root/{{ test1 }}"
+        shell: "{{ spark_root }}/bin/spark-shell -i:/root/{{ test1 }}"
         register: spark_shell_out
         failed_when: "'PASSED' not in spark_shell_out.stdout"
 

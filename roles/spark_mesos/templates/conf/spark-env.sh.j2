@@ -3,13 +3,14 @@
 # options for standalone deploy mode
 export SPARK_MASTER_IP={{ spark_master_host }}
 export SPARK_MASTER_PORT={{ spark_master_port }}
+export SPARK_MASTER_WEBUI_PORT={{ spark_master_ui_port }}
 export SPARK_WORKER_MEMORY={{ spark_worker_memory }}
 export HADOOP_CONF_DIR={{ conf_dir }}
 
 # options for running under mesos
 export MESOS_NATIVE_LIBRARY={{ mesos_install_prefix }}/lib/libmesos.so
 export SPARK_EXECUTOR_URI=hdfs://{{ hdfs_namenode_host }}/tmp/spark-{{ spark_version }}.tgz
-export MASTER=mesos://{{ mesos_master_host }}:{{ mesos_master_port }}
+export MASTER=mesos://zk://{{ mesos_master_host }}:{{ zk_port }}/mesos
 
 # This file is sourced when running various Spark programs.
 # Copy it as spark-env.sh and edit that to configure Spark for your site.

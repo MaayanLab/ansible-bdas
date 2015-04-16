@@ -3,5 +3,6 @@ install_mesos: false
 install_mpi: false
 install_mapred: false
 install_hive: false
-install_tachyon: false
+install_tachyon: true
 install_cassandra: false
+install_spark_mesos_override: true

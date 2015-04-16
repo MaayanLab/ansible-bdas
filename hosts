@@ -1,0 +1,22 @@
+elizabeth.1425mad.mssm.edu ansible_ssh_host=146.203.54.165 ansible_ssh_port=22
+catherine.1425mad.mssm.edu ansible_ssh_host=146.203.54.236 ansible_ssh_port=22
+hannah.1425mad.mssm.edu ansible_ssh_host=146.203.54.131 ansible_ssh_port=22
+charlotte.1425mad.mssm.edu ansible_ssh_host=146.203.54.232 ansible_ssh_port=22
+olivia.1425mad.mssm.edu ansible_ssh_host=146.203.54.212 ansible_ssh_port=22
+courtney.1425mad.mssm.edu ansible_ssh_host=146.203.54.241 ansible_ssh_port=22
+michelle.1425mad.mssm.edu ansible_ssh_host=146.203.54.92 ansible_ssh_port=22
+alice.1425mad.mssm.edu ansible_ssh_host=146.203.54.193 ansible_ssh_port=22
+yan.1425mad.mssm.edu ansible_ssh_host=146.203.54.140 ansible_ssh_port=22
+
+[master]
+elizabeth.1425mad.mssm.edu
+
+[workers]
+catherine.1425mad.mssm.edu
+hannah.1425mad.mssm.edu
+charlotte.1425mad.mssm.edu
+olivia.1425mad.mssm.edu
+courtney.1425mad.mssm.edu
+michelle.1425mad.mssm.edu
+alice.1425mad.mssm.edu
+yan.1425mad.mssm.edu

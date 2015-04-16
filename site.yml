@@ -95,7 +95,7 @@
   any_errors_fatal: yes
 
 - name: deploy standalone Spark
-  hosts: all
+  hosts: master
   vars_files:
     - group_vars/components.yml
   roles:
@@ -115,7 +115,7 @@
   vars_files:
     - group_vars/components.yml
   roles:
-    - { role: spark_mesos, when: install_mesos and install_spark }
+    - { role: spark_mesos, when: (install_mesos and install_spark) or install_spark_mesos_override }
   any_errors_fatal: yes
 
 - name: install mysql on Hive master

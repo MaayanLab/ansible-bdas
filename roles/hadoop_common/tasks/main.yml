@@ -1,11 +1,11 @@
 ---
 - name: Add Cloudera repository key
-  apt_key: url=http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/archive.key state=present
+  apt_key: url=http://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/archive.key state=present
   tags:
     - install
 
 - name: Install Cloudera repository
-  apt_repository: repo='deb [arch=amd64] http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh precise-cdh5 contrib' state=present
+  apt_repository: repo='deb [arch=amd64] http://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh trusty-cdh5 contrib' state=present
   tags:
     - install
 
