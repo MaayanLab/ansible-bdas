@@ -1,0 +1,30 @@
+---
+# Playbook for installing hadoop fuse and mounting it
+
+- name: Install the datanode package
+  apt: name={{ item }} state=installed
+  with_items: 
+    - hadoop-hdfs-fuse
+  tags:
+    - install
+    - configure
+
+- include_vars: roles/hadoop_common/vars/main.yml
+  tags:
+    - configure
+
+- name: Add entry to fstab
+  mount: name=/hadoop/hdfs-mount src=hadoop-fuse-dfs#dfs://{{ hdfs_namenode_host }}:{{ hdfs_defaultFS_port }} fstype=fuse opts=allow_other,usetrash,rw dump=2 state=present  
+  with_items: 
+    - hdfs_namenode_host
+    - hdfs_defaultFS_port
+  tags:
+    - configure
+    
+- name: Mount hdfs
+  mount: name=/hadoop/hdfs-mount src=hadoop-fuse-dfs#dfs://{{ hdfs_namenode_host }}:{{ hdfs_defaultFS_port }} fstype=fuse opts=allow_other,usetrash,rw dump=2 state=mounted  
+  with_items: 
+    - hdfs_namenode_host
+    - hdfs_defaultFS_port
+  tags:
+    - configure

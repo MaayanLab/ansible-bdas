@@ -93,9 +93,25 @@
   roles:
     - { role: hdfs_datanode, when: install_spark or install_mapred or install_mesos or install_tachyon }
   any_errors_fatal: yes
+  
+- name: setup HDFS FUSE
+  hosts: all
+  vars_files:
+    - group_vars/components.yml
+  roles:
+    - { role: hadoop_fuse, when: install_star }
+  any_errors_fatal: yes
+
+- name: install STAR
+  hosts: all
+  vars_files:
+    - group_vars/components.yml
+  roles:
+    - { role: star, when: install_star }
+  any_errors_fatal: yes
 
 - name: deploy standalone Spark
-  hosts: master
+  hosts: all
   vars_files:
     - group_vars/components.yml
   roles:

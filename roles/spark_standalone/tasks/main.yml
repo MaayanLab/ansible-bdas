@@ -22,11 +22,6 @@
   tags:
     - configure
 
-- name: Configure Spark to run in standalone deploy mode
-  template: src=conf/spark-env.sh.j2 dest={{ spark_root }}/conf/spark-env.sh
-  tags:
-    - configure
-
 - name: populate conf/slaves file
   template: src=conf/slaves.j2 dest={{ spark_root }}/conf/slaves
   tags:
@@ -36,11 +31,34 @@
   template: src=conf/spark-defaults.conf.j2 dest={{ spark_root }}/conf/spark-defaults.conf
   tags:
     - configure
-
-- name: Attempt to start Spark cluster  
-  shell: "{{ spark_root }}/sbin/start-all.sh"
-  when: ansible_hostname == "master"
-  ignore_errors: true
+    
+- name: Install R
+  apt: name=r-base-core state=installed
+  tags:
+    - install
+    - configure
+    - sparkr
+    
+- name: Install sparkR dependencies
+  apt: name=libcurl4-openssl-dev state=installed
+  tags:
+    - install
+    - sparkr
+    
+- name: Set CRAN mirror
+  template: src=conf/Rprofile.site.j2 dest=/etc/R/Rprofile.site
   tags:
     - configure
+    - sparkr
 
+- name: Install devtools
+  command: R -e "if (!is.element('devtools', installed.packages()[,1])) install.packages('devtools')"
+  tags:
+    - install
+    - sparkr
+
+- name: Install sparkR
+  shell: SPARK_VERSION=1.3.0 SPARK_HADOOP_VERSION=2.5.0 R -e "library(devtools); if (!is.element('SparkR', installed.packages()[,1])) install_github('amplab-extras/SparkR-pkg', ref='sparkr-sql', subdir='pkg')"
+  tags:
+    - install
+    - sparkr

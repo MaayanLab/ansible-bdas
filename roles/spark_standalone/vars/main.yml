@@ -19,3 +19,5 @@ spark_worker_memory: 14g
 
 # only for spark 0.9.x
 # spark_mem: 14g 
+
+CRAN_mirror: "http://cran.cnr.berkeley.edu/"

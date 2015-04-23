@@ -1,4 +1,8 @@
 ---
+- include_vars: roles/common/vars/main.yml
+  tags:
+    - configure
+
 - include: Debian.yml
   when: ansible_os_family == "Debian"
 
