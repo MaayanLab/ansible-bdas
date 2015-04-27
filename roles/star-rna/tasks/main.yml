@@ -1,0 +1,12 @@
+---
+
+- name: Download Star v{{star_version}}
+  get_url: url={{star_download_url}} 
+    dest=/tmp/{{star_archive_file}}
+    force=no
+
+- name: Unpack Star
+  command: tar -xvf {{star_archive_file}} chdir=/tmp/
+
+- name: Move (by force) Star to bin
+  command: mv /tmp/{{star_folder_name}}/bin/Linux_x86_64/STAR /usr/bin/STAR chdir=/tmp/

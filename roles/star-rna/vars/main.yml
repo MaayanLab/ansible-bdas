@@ -1,0 +1,6 @@
+---
+star_playbook_version: "0.1"
+star_version: "STAR_2.4.1c" 
+star_folder_name: "STAR-{{star_version}}"
+star_archive_file: "{{star_folder_name}}.tar.gz"
+star_download_url: "https://github.com/alexdobin/STAR/archive/{{star_version}}.tar.gz"
